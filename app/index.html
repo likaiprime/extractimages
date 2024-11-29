@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // 获取浏览器语言
+    const userLang = navigator.language || navigator.userLanguage;
+    const lang = userLang.startsWith('zh') ? 'cn' : 'en';
+    // 重定向到相应的语言页面
+    window.location.href = '/' + lang + '/';
+  </script>
+</head>
+<body>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/en/">
+  </noscript>
+</body>
+</html>

@@ -20,7 +20,7 @@ export default function Header() {
           <Link href={`/${currentLang}`} className="flex items-center space-x-2">
             <FileImage className="h-6 w-6" />
             <span className="font-bold hidden sm:inline-block">
-              ExtractImages
+              Free Office Document Images Extractor
             </span>
           </Link>
         </div>
