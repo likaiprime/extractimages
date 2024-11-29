@@ -10,7 +10,11 @@ import { useToast } from '@/hooks/use-toast'
 import { extractImages } from '@/lib/extract-images'
 import { useDictionary } from '@/components/dictionary-provider'
 
-export function FileUpload() {
+interface FileUploadProps {
+  acceptedFileTypes?: string[]
+}
+
+export function FileUpload({acceptedFileTypes = []}: FileUploadProps) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [progress, setProgress] = useState(0)
   const { toast } = useToast()
@@ -70,11 +74,21 @@ export function FileUpload() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     maxFiles: 1,
-    accept: {
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx'],
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx']
-    }
+    accept: acceptedFileTypes.length > 0
+        ? Object.fromEntries(acceptedFileTypes.map(type => [
+          type.startsWith('.docx') ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' :
+              type.startsWith('.pptx') ? 'application/vnd.openxmlformats-officedocument.presentationml.presentation' :
+                  type.startsWith('.xlsx') ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' :
+                      type.startsWith('.pdf') ? 'application/pdf' :
+                          'application/octet-stream',
+          [type]
+        ]))
+        : {
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+          'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx'],
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+          'application/pdf': ['.pdf']
+        }
   })
 
   return (
