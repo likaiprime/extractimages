@@ -19,8 +19,8 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <Link href={`/${currentLang}`} className="flex items-center space-x-2">
             <FileImage className="h-6 w-6" />
-            <span className="font-bold hidden sm:inline-block">
-              Free Office Document Images Extractor
+            <span className="font-semibold">
+              {dictionary.header?.title || "Free Office Document Images Extractor"}
             </span>
           </Link>
         </div>

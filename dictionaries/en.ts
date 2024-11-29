@@ -9,11 +9,16 @@ const dictionary = {
     download: "Download",
     extract: "Extract",
     settings: "Settings",
+    siteName: "ExtractImages.Net",
+    titleFormat: "{title} | ExtractImages.Net"
   },
   messages: {
     success: "Operation successful",
     error: "An error occurred",
     loading: "Loading...",
+  },
+  header: {
+    title: "Free Office Document Images Extractor"
   },
   home: {
     title: "Office Document Image Extractor",
@@ -74,7 +79,7 @@ const dictionary = {
       }
     },
     about: {
-      title: "About Our Office Document Image Extractor",
+      title: "About Free Office Document Image Extractor",
       description1: "Our Free Office Document Images Extractor is a powerful tool designed specifically for extracting images from various office documents. Whether you need to extract images from Word documents, PowerPoint presentations, or Excel spreadsheets, our tool makes the process simple and efficient.",
       description2: "As a specialized Office Document Image Extraction tool, we focus on providing a seamless experience for users who need to extract and manage images from their office documents. Our tool supports all common office file formats, ensuring you can extract images from any document type.",
       keyFeatures: {

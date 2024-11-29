@@ -14,22 +14,18 @@ export default function FaqSection() {
   return (
     <div id="faq" className="mb-16">
       <h2 className="text-3xl font-bold text-center mb-8">{dictionary.home.faq.title}</h2>
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion type="single" collapsible className="w-full space-y-2">
         {dictionary.home.faq.items.map((item, index) => (
           <AccordionItem key={index} value={`item-${index}`}>
             <AccordionTrigger>
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2">
-                  {item.question}
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold">
+                {item.question}
+              </h3>
             </AccordionTrigger>
             <AccordionContent>
-              <div className="mb-6">
-                <p className="text-base font-normal text-muted-foreground">
-                  {item.answer}
-                </p>
-              </div>
+              <p className="text-base font-normal text-muted-foreground">
+                {item.answer}
+              </p>
             </AccordionContent>
           </AccordionItem>
         ))}

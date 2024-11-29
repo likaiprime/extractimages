@@ -8,12 +8,16 @@ const dictionary = {
     upload: "上传",
     download: "下载",
     extract: "提取",
-    settings: "设置",
+    settings: "设置",    siteName: "ExtractImages.Net",
+    titleFormat: "{title} | ExtractImages.Net"
   },
   messages: {
     success: "操作成功",
     error: "发生错误",
     loading: "加载中...",
+  },
+  header: {
+    title: "免费Office文档图片提取器"
   },
   errors: {
     notFound: {
@@ -80,7 +84,7 @@ const dictionary = {
       }
     },
     about: {
-      title: "关于我们的Office文档图片提取工具",
+      title: "关于免费Office文档图片提取器",
       description1: "我们的免费Office文档图片提取工具是一个专门为提取各种办公文档中的图片而设计的强大工具。无论您需要从Word文档、PowerPoint演示文稿还是Excel表格中提取图片，我们的工具都能让这个过程变得简单高效。",
       description2: "作为一个专业的Office文档图片提取工具，我们专注于为用户提供流畅的体验，帮助他们提取和管理文档中的图片。我们的工具支持所有常见的办公文件格式，确保您可以从任何类型的文档中提取图片。",
       keyFeatures: {

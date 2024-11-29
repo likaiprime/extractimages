@@ -4,65 +4,81 @@ import { Locale, i18n } from "@/i18n";
 import DictionaryProvider from "@/components/dictionary-provider";
 import Header from "@/components/header";
 import { Suspense } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
-// Define proper types for the layout
-type LayoutProps = {
-  children: React.ReactNode;
-  params: {
-    lang: Locale;
-  };
-};
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
-// Separate client component with its own props type
 type ClientLayoutProps = {
-  children: React.ReactNode;
-  dictionary: any;
+    children: React.ReactNode;
+    dictionary: any;
 };
 
 function ClientLayout({ children, dictionary }: ClientLayoutProps) {
-  return (
-      <DictionaryProvider dictionary={dictionary}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1 container mx-auto px-4 py-8">
-            {children}
-          </main>
-        </div>
-      </DictionaryProvider>
-  );
+    return (
+        <DictionaryProvider dictionary={dictionary}>
+            <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1 container mx-auto px-4 py-8">
+                    {children}
+                </main>
+            </div>
+            {process.env.NEXT_PUBLIC_GA_ID && (
+                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+            )}
+        </DictionaryProvider>
+    );
 }
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
+export default async function LocaleLayout({
+                                               children,
+                                               params,
+                                           }: {
+    children: React.ReactNode;
+    params: Promise<{ lang: string }>;
+}) {
+    const { lang } = await params;
+
+    if (!i18n.locales.includes(lang as Locale)) {
+        throw new Error('Invalid locale');
+    }
+
+    const dictionary = await getDictionary(lang as Locale);
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ClientLayout dictionary={dictionary}>
+                {children}
+            </ClientLayout>
+        </Suspense>
+    );
 }
 
-// Root layout component with proper typing
-export default async function LocaleLayout({ children, params }: LayoutProps) {
-  const { lang } = params;
+export async function generateMetadata({
+                                           params: { lang },
+                                       }: {
+    params: { lang: string };
+}) {
+    const dictionary = await getDictionary(lang as Locale);
+    const pageTitle = dictionary.home.title;
+    const formattedTitle = dictionary.common.titleFormat.replace('{title}', pageTitle);
 
-  if (!i18n.locales.includes(lang)) {
-    throw new Error('Invalid locale');
-  }
-
-  const dictionary = await getDictionary(lang);
-
-  return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <ClientLayout dictionary={dictionary}>
-          {children}
-        </ClientLayout>
-      </Suspense>
-  );
+    return {
+        title: formattedTitle,
+        description: dictionary.home.description,
+        alternates: {
+            languages: {
+                ...Object.fromEntries(
+                    i18n.locales.map(locale => [
+                        locale,
+                        `/${locale}`
+                    ])
+                )
+            }
+        }
+    };
 }
 
-// Metadata generator with correct typing
-export async function generateMetadata({ params }: LayoutProps) {
-  return {
-    title: 'Office Document Image Extractor',
-    description: 'Extract images from Word, PowerPoint, and Excel files instantly',
-  };
-}
-
-// Force static generation
 export const dynamic = 'force-static';
 export const dynamicParams = false;

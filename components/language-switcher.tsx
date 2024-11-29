@@ -1,46 +1,69 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Languages } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { i18n } from "@/i18n";
+import { cn } from "@/lib/utils";
 
-const languageNames = {
+const languageNames: { [key: string]: string } = {
   en: "English",
-  cn: "简体中文",
+  zh: "简体中文",
+  tw: "繁體中文",
+  ko: "한국어",
+  ja: "日本語",
+  pt: "Português",
+  es: "Español",
+  de: "Deutsch",
+  fr: "Français",
+  vi: "Tiếng Việt",
+  ar: "العربية",
+  nl: "Nederlands",
+  pl: "Polski"
 };
 
 export default function LanguageSwitcher() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const currentLang = pathname.split("/")[1] || i18n.defaultLocale;
-
-  const handleLanguageChange = (newLocale: string) => {
-    if (currentLang === newLocale) return;
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
-    const newPathname = segments.join('/');
-    router.push(newPathname);
-  };
+  const currentLang = pathname.split('/')[1] || i18n.defaultLocale;
+  const restPath = pathname.split('/').slice(2).join('/');
 
   return (
-    <Select value={currentLang} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[140px]">
-        <SelectValue placeholder="Select language" />
-      </SelectTrigger>
-      <SelectContent>
-        {Object.keys(languageNames).map((locale) => (
-          <SelectItem key={locale} value={locale}>
-            {languageNames[locale as keyof typeof languageNames]}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" aria-label="Select language">
+          <Languages className="h-5 w-5" aria-hidden="true" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-[150px]">
+        {i18n.locales.map((locale) => {
+          const isActive = currentLang === locale;
+          const href = `/${locale}${restPath ? `/${restPath}` : ''}`;
+          
+          return (
+            <DropdownMenuItem key={locale} asChild>
+              <Link
+                href={href}
+                className={cn(
+                  "w-full cursor-pointer",
+                  isActive && "bg-accent font-medium"
+                )}
+                aria-current={isActive ? "page" : undefined}
+                hrefLang={locale}
+                title={`Switch to ${languageNames[locale]}`}
+              >
+                {languageNames[locale]}
+              </Link>
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

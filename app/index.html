@@ -4,10 +4,28 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // 获取浏览器语言
+    // Available languages in our application
+    const availableLanguages = ['ar', 'de', 'en', 'es', 'fr', 'ja', 'ko', 'nl', 'pl', 'pt', 'tw', 'vi', 'zh'];
+    
+    // Get browser language
     const userLang = navigator.language || navigator.userLanguage;
-    const lang = userLang.startsWith('zh') ? 'cn' : 'en';
-    // 重定向到相应的语言页面
+    const browserLang = userLang.toLowerCase().split('-')[0];
+    
+    // Find the best matching language
+    let lang = 'en'; // default to English
+    
+    // Special handling for Chinese variants
+    if (browserLang.startsWith('zh')) {
+      // zh-TW -> tw, zh-HK -> tw, others -> zh
+      lang = userLang.includes('TW') || userLang.includes('HK') ? 'tw' : 'zh';
+    } else {
+      // For other languages, try to match exactly
+      if (availableLanguages.includes(browserLang)) {
+        lang = browserLang;
+      }
+    }
+    
+    // Redirect to the appropriate language page
     window.location.href = '/' + lang + '/';
   </script>
 </head>
