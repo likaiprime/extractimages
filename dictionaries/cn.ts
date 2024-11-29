@@ -2,7 +2,7 @@ const dictionary = {
   navigation: {
     home: "首页",
     about: "关于",
-    contact: "联系我们",
+    faq: "常见问题"
   },
   common: {
     upload: "上传",
@@ -31,24 +31,75 @@ const dictionary = {
         description: "所有处理都在您的浏览器中完成。文件永远不会上传到任何服务器，确保完全的隐私。"
       },
       speed: {
-        title: "极速处理",
-        description: "几秒钟内完成图片提取。无需等待上传下载，在浏览器中即时处理。"
+        title: "快速处理",
+        description: "采用最新的浏览器技术，实现快速的图片提取。无需等待上传和处理时间。"
       },
       formats: {
-        title: "支持所有Office格式",
-        description: "支持Microsoft Word (.docx)、PowerPoint (.pptx)和Excel (.xlsx)文件。"
+        title: "支持多种格式",
+        description: "支持所有主流Office文档格式，包括Word、PowerPoint和Excel文件。"
       },
       batch: {
         title: "批量处理",
-        description: "同时从多个文件中提取图片。批量处理提高效率。"
+        description: "一次性处理多个文档，自动提取所有图片。提高工作效率。"
       },
       quality: {
-        title: "原始品质",
-        description: "获取原始分辨率和质量的图片。无压缩，无质量损失。"
+        title: "原图提取",
+        description: "保持原始图片质量，无损提取文档中的所有图片。"
       },
       noInstall: {
         title: "无需安装",
-        description: "直接在网页浏览器中运行。无需下载或安装任何软件。"
+        description: "完全基于浏览器，无需下载安装任何软件。随时随地使用。"
+      }
+    },
+    upload: {
+      dropzone: {
+        title: "拖拽文件到此处",
+        description: "支持 .docx, .pptx, .xlsx 格式",
+        or: "或",
+        browse: "浏览文件",
+        hint: "点击或拖拽文件到此处"
+      },
+      status: {
+        uploading: "正在上传...",
+        processing: "正在处理...",
+        success: "处理完成！",
+        error: "处理出错",
+        ready: "准备下载"
+      },
+      button: {
+        upload: "选择文件",
+        cancel: "取消",
+        clear: "清除",
+        download: "下载图片"
+      },
+      message: {
+        maxSize: "文件大小不能超过 50MB",
+        invalidType: "不支持的文件类型",
+        noImages: "未找到图片",
+        error: "处理失败，请重试"
+      }
+    },
+    about: {
+      title: "关于我们的Office文档图片提取工具",
+      description1: "我们的免费Office文档图片提取工具是一个专门为提取各种办公文档中的图片而设计的强大工具。无论您需要从Word文档、PowerPoint演示文稿还是Excel表格中提取图片，我们的工具都能让这个过程变得简单高效。",
+      description2: "作为一个专业的Office文档图片提取工具，我们专注于为用户提供流畅的体验，帮助他们提取和管理文档中的图片。我们的工具支持所有常见的办公文件格式，确保您可以从任何类型的文档中提取图片。",
+      keyFeatures: {
+        title: "核心功能",
+        items: [
+          "✓ 从Word文档中提取图片",
+          "✓ 从PowerPoint幻灯片中提取图片",
+          "✓ 从Excel表格中提取图片",
+          "✓ 支持批量图片提取"
+        ]
+      },
+      whyChoose: {
+        title: "为什么选择我们",
+        items: [
+          "✓ 免费的Office文档图片提取",
+          "✓ 快速高效的处理",
+          "✓ 安全的文档处理",
+          "✓ 无需注册"
+        ]
       }
     },
     faq: {

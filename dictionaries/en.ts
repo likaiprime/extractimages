@@ -2,7 +2,7 @@ const dictionary = {
   navigation: {
     home: "Home",
     about: "About",
-    contact: "Contact",
+    faq: "FAQ"
   },
   common: {
     upload: "Upload",
@@ -15,12 +15,6 @@ const dictionary = {
     error: "An error occurred",
     loading: "Loading...",
   },
-  errors: {
-    notFound: {
-      title: "404 - Page Not Found",
-      message: "The page you are looking for does not exist.",
-    }
-  },
   home: {
     title: "Office Document Image Extractor",
     subtitle: "Free Online Tool to Extract Images from Office Documents",
@@ -32,23 +26,74 @@ const dictionary = {
       },
       speed: {
         title: "Lightning Fast",
-        description: "Extract images in seconds. No waiting for uploads or downloads - instant processing right in your browser."
+        description: "Using the latest browser technology for fast image extraction. No waiting for uploads or processing."
       },
       formats: {
-        title: "All Office Formats",
-        description: "Support for Microsoft Word (.docx), PowerPoint (.pptx), and Excel (.xlsx) files."
+        title: "Multiple Formats",
+        description: "Support for all major Office document formats including Word, PowerPoint, and Excel files."
       },
       batch: {
         title: "Batch Processing",
-        description: "Extract images from multiple files at once. Save time with efficient batch processing."
+        description: "Process multiple documents at once and extract all images automatically. Improve efficiency."
       },
       quality: {
         title: "Original Quality",
-        description: "Get your images in their original resolution and quality. No compression or quality loss."
+        description: "Maintain original image quality, extract all images from documents without loss."
       },
       noInstall: {
         title: "No Installation",
-        description: "Works directly in your web browser. No need to download or install any software."
+        description: "Completely browser-based, no software to download or install. Use anywhere, anytime."
+      }
+    },
+    upload: {
+      dropzone: {
+        title: "Drop your file here",
+        description: "Supports .docx, .pptx, .xlsx formats",
+        or: "or",
+        browse: "Browse Files",
+        hint: "Click or drag file to this area"
+      },
+      status: {
+        uploading: "Uploading...",
+        processing: "Processing...",
+        success: "Processing complete!",
+        error: "Processing failed",
+        ready: "Ready for download"
+      },
+      button: {
+        upload: "Select File",
+        cancel: "Cancel",
+        clear: "Clear",
+        download: "Download Images"
+      },
+      message: {
+        maxSize: "File size cannot exceed 50MB",
+        invalidType: "Unsupported file type",
+        noImages: "No images found",
+        error: "Processing failed, please try again"
+      }
+    },
+    about: {
+      title: "About Our Office Document Image Extractor",
+      description1: "Our Free Office Document Images Extractor is a powerful tool designed specifically for extracting images from various office documents. Whether you need to extract images from Word documents, PowerPoint presentations, or Excel spreadsheets, our tool makes the process simple and efficient.",
+      description2: "As a specialized Office Document Image Extraction tool, we focus on providing a seamless experience for users who need to extract and manage images from their office documents. Our tool supports all common office file formats, ensuring you can extract images from any document type.",
+      keyFeatures: {
+        title: "Key Features",
+        items: [
+          "✓ Extract images from Word documents",
+          "✓ Extract images from PowerPoint slides",
+          "✓ Extract images from Excel spreadsheets",
+          "✓ Batch image extraction support"
+        ]
+      },
+      whyChoose: {
+        title: "Why Choose Us",
+        items: [
+          "✓ Free Office Document Image extraction",
+          "✓ Fast and efficient processing",
+          "✓ Secure document handling",
+          "✓ No registration required"
+        ]
       }
     },
     faq: {
@@ -76,7 +121,7 @@ const dictionary = {
         }
       ]
     },
-    footer: "All rights reserved."
+    footer: "All rights reserved"
   }
 } as const;
 

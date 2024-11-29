@@ -1,14 +1,24 @@
-import HomePage from '@/components/home-page'
-import { i18n } from '@/i18n'
+// page.tsx
+import HomePage from '@/components/home-page';
+import { i18n } from '@/i18n';
 
-export default function Page() {
-  return <HomePage />
-}
+type PageProps = {
+  params: {
+    lang: string;
+  };
+};
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    lang: locale,
-  }))
-}
+export const generateStaticParams = async () => {
+  const locales = i18n.locales;
+  return locales.map((lang) => ({ lang }));
+};
 
-export const dynamic = 'force-static'
+const Page = async ({ params }: PageProps) => {
+  return <HomePage />;
+};
+
+export default Page;
+
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const revalidate = false;

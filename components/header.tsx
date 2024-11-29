@@ -29,11 +29,11 @@ export default function Header() {
           <Link href={`/${currentLang}`} className="transition-colors hover:text-foreground/80">
             {dictionary.navigation.home}
           </Link>
-          <Link href={`/${currentLang}/about`} className="transition-colors hover:text-foreground/80">
+          <Link href={`/${currentLang}#about`} className="transition-colors hover:text-foreground/80">
             {dictionary.navigation.about}
           </Link>
-          <Link href={`/${currentLang}/contact`} className="transition-colors hover:text-foreground/80">
-            {dictionary.navigation.contact}
+          <Link href={`/${currentLang}#faq`} className="transition-colors hover:text-foreground/80">
+            {dictionary.navigation.faq}
           </Link>
         </nav>
 
