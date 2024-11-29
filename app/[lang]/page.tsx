@@ -9,15 +9,15 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     lang: string;
-  };
+  }>;
 }
 
-export default function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { lang } = await params;
   return <HomePage />;
 }
 
-// Static generation config
 export const dynamic = 'force-static';
 export const dynamicParams = false;

@@ -31,13 +31,14 @@ function ClientLayout({ children, dictionary }: ClientLayoutProps) {
     );
 }
 
-export default async function LocaleLayout({
-                                               children,
-                                               params,
-                                           }: {
+interface LayoutProps {
     children: React.ReactNode;
-    params: Promise<{ lang: string }>;
-}) {
+    params: Promise<{
+        lang: string;
+    }>;
+}
+
+export default async function LocaleLayout({ children, params }: LayoutProps) {
     const { lang } = await params;
 
     if (!i18n.locales.includes(lang as Locale)) {
@@ -56,10 +57,11 @@ export default async function LocaleLayout({
 }
 
 export async function generateMetadata({
-                                           params: { lang },
+                                           params,
                                        }: {
-    params: { lang: string };
+    params: Promise<{ lang: string }>;
 }) {
+    const { lang } = await params;
     const dictionary = await getDictionary(lang as Locale);
     const pageTitle = dictionary.home.title;
     const formattedTitle = dictionary.common.titleFormat.replace('{title}', pageTitle);
