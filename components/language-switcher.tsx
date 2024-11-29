@@ -12,6 +12,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { i18n } from "@/i18n";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const languageNames: { [key: string]: string } = {
   en: "English",
@@ -33,15 +34,27 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const currentLang = pathname.split('/')[1] || i18n.defaultLocale;
   const restPath = pathname.split('/').slice(2).join('/');
+  const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Select language">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          aria-label="Select language"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
           <Languages className="h-5 w-5" aria-hidden="true" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
+      <DropdownMenuContent 
+        align="end" 
+        className="w-[150px]"
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
         {i18n.locales.map((locale) => {
           const isActive = currentLang === locale;
           const href = `/${locale}${restPath ? `/${restPath}` : ''}`;
@@ -52,11 +65,9 @@ export default function LanguageSwitcher() {
                 href={href}
                 className={cn(
                   "w-full cursor-pointer",
-                  isActive && "bg-accent font-medium"
+                  isActive && "font-semibold"
                 )}
-                aria-current={isActive ? "page" : undefined}
-                hrefLang={locale}
-                title={`Switch to ${languageNames[locale]}`}
+                onClick={() => setOpen(false)}
               >
                 {languageNames[locale]}
               </Link>

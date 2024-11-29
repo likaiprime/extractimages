@@ -12,7 +12,7 @@ export default function FaqSection() {
   const dictionary = useDictionary();
   
   return (
-    <div id="faq" className="mb-16">
+    <section id="faq" className="mb-16">
       <h2 className="text-3xl font-bold text-center mb-8">{dictionary.home.faq.title}</h2>
       <Accordion type="single" collapsible className="w-full space-y-2">
         {dictionary.home.faq.items.map((item, index) => (
@@ -30,6 +30,6 @@ export default function FaqSection() {
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+    </section>
   );
 }
