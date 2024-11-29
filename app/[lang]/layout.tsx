@@ -5,6 +5,12 @@ import DictionaryProvider from "@/components/dictionary-provider";
 import Header from "@/components/header";
 import { Suspense } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import FooterSection from "@/components/sections/footer-section";
+import { ThemeProvider } from '@/components/theme-provider';
+import { cn } from '@/lib/utils';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export async function generateStaticParams() {
     return i18n.locales.map((locale) => ({ lang: locale }));
@@ -23,6 +29,9 @@ function ClientLayout({ children, dictionary }: ClientLayoutProps) {
                 <main className="flex-1 container mx-auto px-4 py-8">
                     {children}
                 </main>
+                <div className="bg-black text-white">
+                    <FooterSection />
+                </div>
             </div>
             {process.env.NEXT_PUBLIC_GA_ID && (
                 <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
@@ -48,11 +57,18 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     const dictionary = await getDictionary(lang as Locale);
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <ClientLayout dictionary={dictionary}>
-                {children}
-            </ClientLayout>
-        </Suspense>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <Suspense fallback={<div>Loading...</div>}>
+                <ClientLayout dictionary={dictionary}>
+                    {children}
+                </ClientLayout>
+            </Suspense>
+        </ThemeProvider>
     );
 }
 
