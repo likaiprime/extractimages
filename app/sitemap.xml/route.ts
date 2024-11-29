@@ -1,13 +1,24 @@
 import { i18n } from '@/i18n'
 
 export async function GET() {
-  const baseUrl = 'https://extractimages.net' // 替换为你的实际域名
+    const baseUrl = 'https://extractimages.net'
 
-  // 为每个语言生成URL
-  const urls = i18n.locales.map(locale => ({
-    url: `${baseUrl}/${locale}/`,
-    lastModified: new Date().toISOString(),
-  }))
+    // 定义所有可用的路径
+    const paths = [
+        '/',
+        '/excel',
+        '/word',
+        '/powerpoint',
+        '/pdf'
+    ]
+
+    // 为每个语言和路径生成URL
+    const urls = i18n.locales.flatMap(locale =>
+        paths.map(path => ({
+            url: `${baseUrl}/${locale}${path}`,
+            lastModified: new Date().toISOString(),
+        }))
+    )
 
   // 生成sitemap XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
