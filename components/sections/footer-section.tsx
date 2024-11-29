@@ -33,7 +33,7 @@ const LANGUAGES = {
 export default function FooterSection() {
   const pathname = usePathname()
   const currentLang = pathname.split('/')[1]
-  const { tools } = useDictionary()
+    const {tools, footer} = useDictionary()
 
   const friendlyLinks = [
     { name: 'Dreamega.AI', url: 'https://dreamega.ai' },
@@ -69,7 +69,7 @@ export default function FooterSection() {
         <div className="md:col-span-6 grid grid-cols-2 gap-8">
           {/* Friendly Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Partners</h3>
+              <h3 className="font-semibold mb-4 text-white">{footer.partners}</h3>
             <ul className="space-y-2">
               {friendlyLinks.map((link) => (
                 <li key={link.url}>
@@ -88,7 +88,7 @@ export default function FooterSection() {
 
           {/* Tool Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Tools</h3>
+              <h3 className="font-semibold mb-4 text-white">{footer.tools}</h3>
             <ul className="space-y-2">
               {toolLinks.map((link) => (
                 <li key={link.path}>

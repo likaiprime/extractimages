@@ -9,6 +9,7 @@ import word from './word'
 import powerpoint from './powerpoint'
 import excel from './excel'
 import pdf from './pdf'
+import footer from './footer'
 
 const dictionary = {
   navigation,
@@ -21,7 +22,8 @@ const dictionary = {
   word,
   powerpoint,
   excel,
-  pdf
+    pdf,
+    footer
 } as const;
 
 export default dictionary;
