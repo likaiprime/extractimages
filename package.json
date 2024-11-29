@@ -67,6 +67,11 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@formatjs/intl-localematcher": "^0.5.4",
+    "negotiator": "^0.6.3"
+  },
+  "devDependencies": {
+    "@types/negotiator": "^0.6.3"
   }
 }
