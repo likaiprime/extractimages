@@ -3,8 +3,7 @@
 import { useDictionary } from "./dictionary-provider";
 import LanguageSwitcher from "./language-switcher";
 import { ThemeToggle } from "./theme-toggle";
-import { FileImage, Github } from "lucide-react";
-import { Button } from "./ui/button";
+import { FileImage } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -38,16 +37,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" asChild>
-            <a
-              href="https://github.com/yourusername/extractimages"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-          </Button>
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
